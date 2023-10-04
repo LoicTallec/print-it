@@ -90,3 +90,11 @@ arrowLeft.addEventListener('click', function() {
 	updateCarousel(currentIndex);
   });
 
+  // Ajouter un écouteur d'événement à chaque dot
+dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
+	dot.addEventListener('click', function() {
+	  currentIndex = index;
+	  updateCarousel(currentIndex);
+	});
+  });
+  
