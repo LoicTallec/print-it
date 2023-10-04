@@ -37,59 +37,56 @@ const arrowRight = banner.querySelector('.arrow_right');
 
 const dotsContainer = document.querySelector('.dots');
 
-for (let i = 0; i < 4; i++) {
-  const dot = document.createElement('div');
-  dot.classList.add('dot');
-  dotsContainer.appendChild(dot);
-}
+const dotsSelected = document.querySelector('.dot_selected');
 
 let currentIndex = 0;
 
+for (let i = 0; i < 4; i++) {
+	const dot = document.createElement('div');
+	dot.classList.add('dot');
+	dotsContainer.appendChild(dot);
+  
+	// Ajouter la classe "dot_selected" au premier dot
+	if (i === 0) {
+	  dot.classList.add('dot_selected');
+	}
+}
+
+
 // ******************** FUNCTIONS ********************
 
-// Fonction pour mettre à jour le contenu du carrousel
-
+// mise a jour de l'image du carrousel
 function updateCarousel(index) {
-	const slide = slides[index];
-	bannerImg.src = `./assets/images/slideshow/${slide.image}`;
-	bannerImg.alt = `Banner Print-it ${index + 1}`;
-	bannerCaption.innerHTML = slide.tagLine;
-	
-	// Mettre à jour les classes active/inactive des dots
-	dotsContainer.querySelectorAll('.dot').forEach(dotElement => {
-	  dotElement.classList.remove('active');
-	});
-	
-  }
-  
+  const slide = slides[index];
+  bannerImg.src = `./assets/images/slideshow/${slide.image}`;
+  bannerImg.alt = `Banner Print-it ${index + 1}`;
+  bannerCaption.innerHTML = slide.tagLine;
+  updateDots(index);
+}
+
+//mise a jour des dots 
+function updateDots(index) {
+  const dots = dotsContainer.querySelectorAll('.dot');
+  dots.forEach((dotElement, dotIndex) => {
+    if (dotIndex === index) {
+      dotElement.classList.add('dot_selected');
+    } else {
+      dotElement.classList.remove('dot_selected');
+    }
+  });
+}
 
 // ******************** MAIN ********************
 
-// Afficher le premier slide par défaut
-updateCarousel(currentIndex);
-
-// Gestion des clics sur les flèches de navigation
-arrowLeft.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateCarousel(currentIndex);
-});
-
-arrowRight.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateCarousel(currentIndex);
-});
-
-// Gestion des clics sur les dots
-slides.forEach((slide, index) => {
-  const dot = document.createElement('div');
-  dot.classList.add('dot');
-  if (index === currentIndex) {
-    dot.classList.add('active');
-  }
-
-
-  dot.addEventListener('click', () => {
-    currentIndex = index;
-    updateCarousel(currentIndex);
+// fleche de gauche
+arrowLeft.addEventListener('click', function() {
+	currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+	updateCarousel(currentIndex);
   });
-});
+  
+  // fleche de droite
+  arrowRight.addEventListener('click', function() {
+	currentIndex = (currentIndex + 1) % slides.length;
+	updateCarousel(currentIndex);
+  });
+
