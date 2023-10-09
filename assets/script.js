@@ -108,7 +108,7 @@ function fillDots() {
 /**
  * Adds event listeners to the arrow buttons and dots.
  */
-function addlisteners() {
+function addListeners() {
   arrowLeft.addEventListener('click', clickLeft);
   arrowRight.addEventListener('click', clickRight);
   
@@ -122,4 +122,4 @@ function addlisteners() {
 // ******************** MAIN ********************
 
 fillDots();
-addlisteners();
+addListeners();
