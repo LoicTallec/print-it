@@ -2,6 +2,7 @@
 
 // ******************** CONSTANTS ********************
 
+// Array of objects representing each slide in the carousel
 const slides = [
   {
     "image":"slide1.jpg",
@@ -21,17 +22,18 @@ const slides = [
   }
 ]
 
-const banner        = document.querySelector('#banner');
-const bannerImg     = document.querySelector('.banner-img');
-const bannerCaption = document.querySelector('#banner p');
-const arrowLeft     = document.querySelector('.arrow_left');
-const arrowRight    = document.querySelector('.arrow_right');
-const dotsContainer = document.querySelector('.dots');
-const dotsSelected  = document.querySelector('.dot_selected');
+// Selecting elements from the DOM
+const banner        = document.querySelector('#banner'); // The main banner container
+const bannerImg     = document.querySelector('.banner-img'); // The image element within the banner
+const bannerCaption = document.querySelector('#banner p'); // The caption element within the banner
+const arrowLeft     = document.querySelector('.arrow_left'); // The left arrow button
+const arrowRight    = document.querySelector('.arrow_right'); // The right arrow button
+const dotsContainer = document.querySelector('.dots'); // The container for the dots indicating the slide index
+const dotsSelected  = document.querySelector('.dot_selected'); // The currently selected dot
 
 // ******************** VARIABLES ********************
 
-let currentIndex = 0;
+let currentIndex = 0; // The index of the currently displayed slide
 
 // ******************** FUNCTIONS ********************
 
@@ -109,9 +111,14 @@ function fillDots() {
  * Adds event listeners to the arrow buttons and dots.
  */
 function addListeners() {
+  // Add click event listener to the left arrow button
   arrowLeft.addEventListener('click', clickLeft);
+
+  // Add click event listener to the right arrow button
   arrowRight.addEventListener('click', clickRight);
-  
+
+  // Add click event listener to each dot in the dots container
+  // TODO comment each line
   dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
     dot.addEventListener('click', function() {
       clickDot(index);
