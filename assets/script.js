@@ -82,15 +82,6 @@ function clickRight() {
   updateCarousel(currentIndex);
 }
 
-/**
- * Display the good image when clicking on a dot by calling the updateCarousel function. 
- *
- * @param {number} dotIndex - The index of the dot to click on.
- */
-function clickDot(dotIndex) {
-  currentIndex = dotIndex;
-  updateCarousel(currentIndex);
-}
 
 /**
  * Fills the dots container with four dot elements and adds the "dot_selected" class to the first dot.
@@ -121,7 +112,7 @@ function addListeners() {
   // TODO comment each line
   dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
     dot.addEventListener('click', function() {
-      clickDot(index);
+      updateCarousel(index);
     });
   });
 }
